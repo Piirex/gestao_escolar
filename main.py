@@ -3,20 +3,25 @@ from mysql.connector import connect, Error
 from flask import Flask, request, jsonify, send_from_directory
 from flask_swagger_ui import get_swaggerui_blueprint
 import os
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 
 
 db_url = os.getenv("DATABASE_URL")
-if db_url:
-    config = {
-        'user': db_url.split(':')[1].replace('//', ''),
-        'password': db_url.split(':')[2].replace('@')[0],
-        'host': db_url.split('@')[1].split('/')[0],
-        'database': db_url.split('/')[-1]
-    }
-else:
-    raise ValueError("DATABASE_URL is not set. Please check yours environment variables")
+
+if db_url is None:
+    raise ValueError("DATABASE_URL não está definida ou está vazia.")
+
+url = urlparse(db_url)
+
+config = {
+    'user': url.username,
+    'password': url.password,
+    'host': url.hostname,
+    'port': url.port,
+    'database': url.path[1:]
+}
 
 connection = mysql.connector.connect(**config)
 
