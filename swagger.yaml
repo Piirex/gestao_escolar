@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: "API de Gestão de Alunos"
+  description: "API para gerenciar alunos em uma sistema escolar."
+  version: 1.0.0
+servers:
+  - url: "http://127.0.0.1:5000"
+
+paths:
+  /alunos/lista:
+    get:
+      summary: "Lista de todos os alunos"
+      description: "Retorna uma lista de todos os alunos"
+      responses:
+        '200':
+          description: "Lista de alunos retornada com sucesso"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    nascimento:
+                      type: string
+                      format: date
+                    notas_primeiro_semestre:
+                      type: number
+                    notas_segundo_semestre:
+                      type: number
+                    nome_professor:
+                      type: string
+                    numero_sala:
+                      type: integer
+ 
+  /alunos/novo:
+    post:
+      summary: "Adicionar um novo aluno"
+      description: "Cria um novo aluno no banco de dados"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                nascimento:
+                  type: string
+                  format: date
+                notas_primeiro_semestre:
+                  type: number
+                notas_segundo_semestre:
+                  type: number
+                nome_professor:
+                  type: string
+                numero_sala:
+                  type: integer
+      responses:
+        '201':
+          description: "Aluno adicionado com sucesso"
+        '400':
+          description: "Erro na requisição"
+
+  /alunos/update/{id}:
+    put:
+      summary: "Atualizar um aluno existente"
+      description: "Atualiza as informações de um aluno existente pelo ID"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: "ID do aluno a ser atualizado"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                nascimento:
+                  type: string
+                  format: date
+                notas_primeiro_semestre:
+                  type: number
+                notas_segundo_semestre:
+                  type: number
+                nome_professor:
+                  type: string
+                numero_sala:
+                  type: integer
+      responses:
+        '200':
+          description: "Aluno atualizado com sucesso"
+        '400':
+          description: "Erro na requisição"
+        '404':
+          description: "Aluno não encontrado"
+
+  /alunos/delete/{id}:
+    delete:
+      summary: "Excluir aluno"
+      description: "Exclui um aluno pelo ID"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: "ID do aluno a ser EXCLUÍDO"
+      responses:
+        '200':
+          description: "Aluno EXCLUÍDO com sucesso"
+        '404':
+          description: "Aluno não encontrado"
+          
