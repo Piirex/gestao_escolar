@@ -4,7 +4,7 @@ info:
   description: "API para gerenciar alunos em uma sistema escolar."
   version: 1.0.0
 servers:
-  - url: "https://gestao-escolar-t0om.onrender.com"
+  - url: "http://127.0.0.1:5000"
 
 paths:
   /alunos/lista:
