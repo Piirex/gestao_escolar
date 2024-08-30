@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 
 db_url = os.getenv("DATABASE_URL")
+print(f'URL do banco de dados: {db_url}')
 
 if db_url is None:
     raise ValueError("DATABASE_URL não está definida ou está vazia.")
