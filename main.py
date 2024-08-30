@@ -16,7 +16,7 @@ if db_url:
         'database': db_url.split('/')[-1]
     }
 else:
-    raise ValueError("DATABASE_URL is not set. Please check yours environment variables"
+    raise ValueError("DATABASE_URL is not set. Please check yours environment variables")
 
 connection = mysql.connector.connect(**config)
 
