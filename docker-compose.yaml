@@ -6,7 +6,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: mysql://root:mysql1234@db:3306/escola
+      DATABASE_URL: mysql://root:YtrSWVDVQUAZzqbCwngpdhZFakJtVpvo@junction.proxy.rlwy.net:19122/railway
     depends_on:
       - db
 
@@ -14,8 +14,8 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: mysql1234
-      MYSQL_DATABASE: escola
+      MYSQL_ROOT_PASSWORD: YtrSWVDVQUAZzqbCwngpdhZFakJtVpvo
+      MYSQL_DATABASE: railway
     ports:
-      - "3306:3306"
+      - "19122:19122"
 

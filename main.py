@@ -47,11 +47,10 @@ def swagger_yaml():
 # Função para conectar ao banco de dados MySQL
 def conectar():
     conexao = connect(
-        host='localhost',
+        host='junction.proxy.rlwy.net',
         user='root',
-        password='mysql1234',
-        database='escola',
-        auth_plugin='mysql_native_password'
+        password='YtrSWVDVQUAZzqbCwngpdhZFakJtVpvo',
+        database='railway',
     )
     return conexao
 
