@@ -9,7 +9,7 @@ services:
       - "5000:5000"
     environment:
       - FLASK_ENV=production
-      - DATABASE_URL=mysql://root:mysql1234/escola
+      - DATABASE_URL=mysql://root:mysql1234@localhost:5000/escola
     depends_on:
       - mysql_db
 
