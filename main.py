@@ -1,8 +1,21 @@
+import mysql.connector
 from mysql.connector import connect, Error
 from flask import Flask, request, jsonify, send_from_directory
 from flask_swagger_ui import get_swaggerui_blueprint
+import os
 
 app = Flask(__name__)
+
+
+db_url = os.getenv("DATABASE_URL")
+config = {
+    'user': db_url.split(':')[1].replace('//', ''),
+    'password': db_url.split(':')[2].replace('@')[0],
+    'host': db_url.split('@')[1].split('/')[0],
+    'database': db_url.split('/')[-1]
+}
+
+connection = mysql.connector.connect(**config)
 
 
 # Configuração do Swagger
