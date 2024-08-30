@@ -8,12 +8,15 @@ app = Flask(__name__)
 
 
 db_url = os.getenv("DATABASE_URL")
-config = {
-    'user': db_url.split(':')[1].replace('//', ''),
-    'password': db_url.split(':')[2].replace('@')[0],
-    'host': db_url.split('@')[1].split('/')[0],
-    'database': db_url.split('/')[-1]
-}
+if db_url:
+    config = {
+        'user': db_url.split(':')[1].replace('//', ''),
+        'password': db_url.split(':')[2].replace('@')[0],
+        'host': db_url.split('@')[1].split('/')[0],
+        'database': db_url.split('/')[-1]
+    }
+else:
+    raise ValueError("DATABASE_URL is not set. Please check yours environment variables"
 
 connection = mysql.connector.connect(**config)
 
